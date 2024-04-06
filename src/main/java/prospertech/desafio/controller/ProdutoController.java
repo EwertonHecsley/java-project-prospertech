@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import prospertech.desafio.HttpExceptions.ProdutoNotFoundException;
+import prospertech.desafio.httpException.ProdutoNotFoundException;
 import prospertech.desafio.model.Produto;
 import prospertech.desafio.repository.ProdutoRepository;
 
@@ -28,5 +30,10 @@ public class ProdutoController {
     @GetMapping
     public List<Produto> listar(){
         return produtoRepository.findAll();
+    }
+
+    @PostMapping
+    public Produto cadastrar(@RequestBody Produto produto){
+        return produtoRepository.save(produto);
     }
 }

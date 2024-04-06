@@ -24,6 +24,8 @@ public class Produto {
     @Column(nullable = false)
     private String descricao;
 
+    public Produto(){}
+
     public Produto(String nome, Double preco, String descricao){
         this.nome = nome;
         this.preco = preco;

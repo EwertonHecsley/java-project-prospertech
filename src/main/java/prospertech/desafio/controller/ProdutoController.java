@@ -3,6 +3,8 @@ package prospertech.desafio.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +35,8 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public Produto cadastrar(@RequestBody Produto produto){
-        return produtoRepository.save(produto);
+    public ResponseEntity<Produto> cadastrar(@RequestBody Produto produto){
+        Produto novoProduto = produtoRepository.save(produto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoProduto);
     }
 }
